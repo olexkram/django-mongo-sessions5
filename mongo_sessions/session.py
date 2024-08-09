@@ -1,8 +1,5 @@
 from datetime import timedelta
-try:
-    from django.utils.encoding import force_unicode
-except ImportError:  # Python 3.*
-    from django.utils.encoding import force_text as force_unicode
+from django.utils.encoding import force_str as force_unicode
 from django.contrib.sessions.backends.base import SessionBase, CreateError
 from django.utils import timezone
 from mongo_sessions import settings
@@ -78,7 +75,7 @@ class SessionStore(SessionBase):
             'creation_date': timezone.now()
         }
 
-        self.db_collection.update(
+        self.db_collection.update_one(
             {'session_key': self.session_key},
             {'$set': session},
             upsert=True
