@@ -53,12 +53,12 @@ MONGO_SESSIONS_INDEXES = DB_COLLECTION.index_information()
 
 # check existing indexes
 if len(MONGO_SESSIONS_INDEXES) <= 1:
-    DB_COLLECTION.ensure_index(
+    DB_COLLECTION.create_index(
         'session_key',
         unique=True
     )
 
-    DB_COLLECTION.ensure_index(
+    DB_COLLECTION.create_index(
         'creation_date',
         expireAfterSeconds=MONGO_SESSIONS_TTL
     )
@@ -70,7 +70,7 @@ if int(MONGO_SESSIONS_INDEXES['creation_date_1']['expireAfterSeconds']) \
         != int(MONGO_SESSIONS_TTL):
     DB_COLLECTION.drop_index('creation_date_1')
 
-    DB_COLLECTION.ensure_index(
+    DB_COLLECTION.create_index(
         'creation_date',
         expireAfterSeconds=MONGO_SESSIONS_TTL
     )
