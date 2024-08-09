@@ -1,12 +1,7 @@
 django-mongo-sessions
 =====================
 
-:info: mongodb as Django sessions backend
-
-.. image:: https://api.travis-ci.org/hellysmile/django-mongo-sessions.png
-    :target: https://travis-ci.org/hellysmile/django-mongo-sessions
-
-features
+This is fork to use it with pymongo 4.x+ and django 4.x+
 ********
 
 * fast NoSQL Django sessions backend
@@ -59,11 +54,3 @@ will be dropped and then will be indexed with ``ensureIndex`` again,
 be careful here
 
 *it is good way to change expireAfterSeconds only by 1 running instance*
-
-tests
------
-
-::
-
-    pip install tox
-    tox
